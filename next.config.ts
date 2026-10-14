@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   reactCompiler: true,
+  sassOptions: {
+    loadPaths: ["./src"],
+  },
 };
 
 export default nextConfig;
