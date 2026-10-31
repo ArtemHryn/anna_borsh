@@ -1,0 +1,51 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	@media all and (min-width: $mac) {
+		width: 716px;
+	}
+}
+
+.input_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	@media all and (min-width: $mac) {
+		gap: 32px;
+	}
+}
+
+.label {
+	@include fontRegular(10px, 400, 10px, $light-gray);
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.textarea {
+	width: 100%;
+	border: 1px solid $border-color;
+	padding: 14px 16px;
+	height: 48px;
+	background-color: transparent;
+	@include fontRegular(16px, 400, 20px, $light-gray);
+	outline: none;
+	transition: border-color 0.3s ease-in-out;
+	resize: none;
+
+	&:focus {
+		border-color: $dark-gray;
+	}
+}
+
+.submit {
+	@include fontRegular(24px, 600, 28.8px);
+	text-decoration: underline;
+	text-decoration-color: $red;
+	text-decoration-thickness: 1px;
+	text-decoration-skip-ink: none;
+	text-underline-offset: 4px;
+}

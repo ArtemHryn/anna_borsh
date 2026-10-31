@@ -1,0 +1,113 @@
+.hero {
+	height: calc(844px - 80px);
+	width: 390px;
+	padding: 0px 24px 60px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+
+	@media all and (min-width: $tablet) {
+		height: calc(1040px - 96px);
+		padding: 0 80px 80px;
+	}
+}
+
+.title {
+	@include fontRegular(60px, 700, 58px);
+
+	@media all and (min-width: $tablet) {
+		font-size: 140px;
+	}
+}
+
+.info_wrapper {
+	display: flex;
+	gap: 16px;
+
+	@media all and (min-width: $tablet) {
+		gap: 80px;
+	}
+}
+
+.couch {
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	@include fontRegular(28px, 700, 26.2px, $red);
+	padding-top: 12px;
+	letter-spacing: 0.2em;
+
+	@media all and (min-width: $tablet) {
+		font-size: 52px;
+		letter-spacing: 0.05em;
+		padding-top: 0px;
+	}
+}
+
+.description_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	@media all and (min-width: $tablet) {
+		gap: 80px;
+	}
+}
+
+.be_yourself {
+	@include fontRegular(16px, 600, 18.2px);
+
+	@media all and (min-width: $tablet) {
+		font-size: 24px;
+	}
+}
+
+.inner_description_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	@media all and (min-width: $tablet) {
+		gap: 24px;
+	}
+}
+
+.description {
+	@include fontRegular(14px, 400, 18.2px);
+
+	@media all and (min-width: $tablet) {
+		font-size: 18px;
+	}
+}
+
+.buttons_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	@media all and (min-width: $tablet) {
+		flex-direction: row;
+		gap: 24px;
+	}
+}
+
+.buttons {
+	@include centerButton();
+	width: 100%;
+	max-width: 295px;
+	height: 44px;
+
+	@include fontRegular(16px, 500, 16px);
+
+	@media all and (min-width: $tablet) {
+		max-width: 187px;
+	}
+}
+
+.primary {
+	background-color: $cream-background;
+	color: $black
+}
+
+.secondary {
+	border: 1px solid $white;
+}

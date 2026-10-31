@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   sassOptions: {
     loadPaths: ["./src"],
+    additionalData: '@use "@/styles/main.scss" as *;',
   },
 };
 

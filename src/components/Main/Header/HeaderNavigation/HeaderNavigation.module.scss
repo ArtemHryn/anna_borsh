@@ -1,0 +1,103 @@
+.navigation {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.list {
+	display: flex;
+	gap: clamp(12px, 2vw, 24px);
+}
+
+.link {
+	@include fontRegular(14px, 700, 14px);
+	text-transform: uppercase;
+
+	@media all and (min-width: $tablet) {
+		font-size: clamp(14px, 1.8vw, 18px);
+	}
+}
+
+.actions {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+
+.social {
+	position: absolute;
+	top: 0;
+	z-index: 10;
+	transform: translate(-150%, 0%);
+	display: flex;
+	height: 40px;
+	width: 64px;
+	align-self: flex-start;
+	overflow: hidden;
+	border-radius: 24px;
+	padding: 2px;
+	transition: height 0.3s ease;
+	border: 1px solid $white;
+	background-color: transparent;
+
+	&.socialOpen {
+		height: 120px;
+	}
+}
+
+.soc_links_list {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 4px;
+	width: 36px;
+	background: transparent;
+	border-radius: 24px;
+}
+
+.social_link {
+	@include centerButton();
+	width: 36px;
+	height: 36px;
+
+	&>svg {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+.open_btn {
+	@include centerButton();
+	width: 24px;
+	height: 32px;
+	align-self: start;
+
+	&>svg {
+		transition: all 0.3s ease;
+		width: 20px;
+		height: 20px
+	}
+
+	&[aria-expanded="true"] svg {
+		transform: rotate(180deg);
+	}
+}
+
+.login {
+	@include centerButton();
+	width: 40px;
+	height: 40px;
+	border: 2px solid $white;
+	border-radius: 100%;
+
+	&>svg {
+		width: 24px;
+		height: 24px;
+	}
+}

@@ -1,0 +1,32 @@
+.text_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.about {
+	display: flex;
+	flex-direction: column-reverse;
+	@include fontRegular(16px, 400, 20px, $black);
+	gap: 8px;
+
+
+	&::before {
+		content: '';
+		width: 32px;
+		height: 2px;
+		background-color: $red;
+	}
+
+	@media all and (min-width: $tablet) {
+		font-size: clamp(15px, 2vw, 24px);
+
+		&::before {
+			width: clamp(62px, 5vw, 92px);
+			height: 4px;
+			border-radius: 1px;
+			flex-shrink: 0;
+		}
+	}
+
+}

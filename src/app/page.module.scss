@@ -1,6 +1,17 @@
 @use "@/styles/main.scss" as *;
 
-.main {
-	background-color: $section_color;
-	height: 100px;
+.header_wrapper {
+	background: url('/assets/images/hero_bg.webp') center / 100vw no-repeat;
+
+	@media all and (min-width: $tablet) {
+		background: url('/assets/images/hero_bg_tablet.webp') center / cover no-repeat;
+	}
+
+	@media all and (min-width: $min_pc) {
+		background: url('/assets/images/hero_bg_desktop.webp') center / cover no-repeat;
+	}
+
+	@media all and (min-width: $big) {
+		background: url('/assets/images/hero_bg_1920.webp') center / cover no-repeat;
+	}
 }

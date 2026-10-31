@@ -1,0 +1,45 @@
+.list {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	@media all and (min-width: $mac) {
+		flex-direction: column;
+		justify-content: flex-start;
+
+		&>li {
+			width: 100%;
+		}
+	}
+
+	@media all and (min-width: $big) {
+		gap: 0;
+	}
+}
+
+.link {
+	@include centerButton();
+	width: 40px;
+	height: 40px;
+
+	&>svg {
+		width: 28px;
+		height: 28px;
+	}
+
+	&>span {
+		display: none;
+	}
+
+	@media all and (min-width: $mac) {
+		width: max-content;
+		gap: 16px;
+
+		&>span {
+			display: inline;
+			@include fontRegular(24px, 400, 31.2px, $white);
+			text-decoration: underline;
+			text-decoration-skip-ink: none;
+		}
+	}
+}

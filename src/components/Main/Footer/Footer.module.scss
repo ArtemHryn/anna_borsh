@@ -1,0 +1,162 @@
+.footer {
+	position: relative;
+	max-width: 100vw;
+	overflow: hidden;
+	padding-block: 40px 80px;
+	background-color: $black-hover;
+
+	@media all and (min-width: $min_pc) {
+		padding-block: 80px 160px;
+	}
+
+}
+
+.container {
+	margin-inline: auto;
+	max-width: 100vw;
+	padding-inline: 24px;
+
+	@media all and (min-width: $tablet) {
+		max-width: $tablet;
+		width: 100%;
+	}
+
+	@media all and (min-width: $min_pc) {
+		max-width: $min_pc;
+		padding-inline: 40px;
+	}
+
+	@media all and (min-width: $mac) {
+		max-width: $mac;
+	}
+
+	@media all and (min-width: $desktop) {
+		max-width: $desktop;
+	}
+
+	@media all and (min-width: $big) {
+		max-width: $big;
+	}
+}
+
+.form_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+	padding-bottom: 80px;
+	border-bottom: 0.50px solid $light-gray;
+
+	@media all and (min-width: $mac) {
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		gap: 40px;
+	}
+}
+
+.text_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	@media all and (min-width: $mac) {
+		max-width: 450px;
+		align-items: flex-end;
+	}
+}
+
+.title {
+	@media all and (min-width: $mac) {
+		text-align: right;
+	}
+}
+
+.about {
+	@include fontRegular(16px, 600, 19.2px, $light-red);
+	text-wrap: balance;
+	max-width: 50%;
+
+	@media all and (min-width: $mac) {
+		text-align: right;
+		font-size: 24px;
+	}
+}
+
+//second part
+
+.bottom_text_wrapper {
+	display: flex;
+	flex-direction: column;
+	padding-top: 80px;
+	gap: 32px;
+
+	@media all and (min-width: $tablet) {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	@media all and (min-width: $mac) {
+		flex-wrap: wrap;
+	}
+
+	@media all and (min-width: $big) {
+		gap: 0;
+	}
+}
+
+.info_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+.anka_title {
+	display: flex;
+	flex-direction: column;
+	@include fontRegular(60px, 700, 56px);
+
+	@media all and (min-width: $mac) {
+		font-size: 140px;
+	}
+
+	@media all and (min-width: $big) {
+		display: block;
+	}
+}
+
+.politic_wrapper {
+	display: flex;
+	flex-direction: column;
+
+	@media all and (min-width: $mac) {
+		width: 100%;
+		flex-direction: row;
+		gap: 42px;
+	}
+}
+
+.politic_links {
+	display: flex;
+	align-items: center;
+	height: 40px;
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	text-decoration-thickness: 1px;
+	@include fontRegular(14px, 400, 18.2px, $light-gray);
+
+	@media all and (min-width: $mac) {
+		text-transform: uppercase;
+		order: 2;
+		text-decoration: none;
+	}
+}
+
+.copyright {
+	@include fontRegular(14px, 400, 18.2px, $light-gray);
+	display: flex;
+	align-items: center;
+	height: 40px;
+
+	@media all and (min-width: $mac) {
+		order: 1;
+	}
+}

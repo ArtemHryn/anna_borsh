@@ -1,0 +1,39 @@
+.menu_button {
+	@include centerButton();
+	width: 40px;
+	height: 40px;
+	border: 2px solid $white;
+	border-radius: 50%;
+	transition: all 250ms ease;
+
+	@media (hover: hover) {
+		&:is(:hover, :focus) {
+			background-color: $white;
+
+			&>svg {
+				stroke: $section_color;
+			}
+		}
+	}
+
+	@media (hover: none) {
+		&:is(:active, :focus) {
+			background-color: $white;
+
+			&>svg {
+				stroke: $section_color;
+			}
+		}
+	}
+
+	&>svg {
+		width: 24px;
+		height: 24px;
+		stroke: $white;
+		transition: stroke 250ms ease;
+	}
+
+	@media all and (min-width: $tablet) {
+		display: none;
+	}
+}

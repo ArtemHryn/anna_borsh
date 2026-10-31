@@ -1,0 +1,20 @@
+.header_wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 40px;
+}
+
+.header {
+	@include fontRegular(10px, 700, 10px, $black);
+	font-family: var(--arimo);
+
+	@media all and (min-width: $min_pc) {
+		font-size: 16px;
+	}
+}
+
+.light {
+	color: $white;
+}

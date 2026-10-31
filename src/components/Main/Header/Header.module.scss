@@ -1,0 +1,47 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24px 16px;
+
+	height: 80px;
+
+	@media all and (min-width: $tablet) {
+		height: 96px;
+		width: 100vw;
+	}
+
+	@media all and (min-width: $desktop) {
+		width: 1312px;
+	}
+}
+
+.mob_wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+
+	@media all and (min-width: $tablet) {
+		display: none;
+	}
+}
+
+.tab_plus_wrapper {
+	display: none;
+
+	@media all and (min-width: $tablet) {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+}
+
+.title {
+	@include fontRegular(24px, 700, 24px);
+
+	@media all and (min-width: $tablet) {
+		font-size: 32px;
+	}
+}

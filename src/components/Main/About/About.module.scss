@@ -1,0 +1,310 @@
+.section {
+	padding: 24px 24px 0;
+	margin-inline: auto;
+	max-width: $min_mobile;
+
+	@media all and (min-width: $tablet) {
+		max-width: $tablet;
+		width: 100%;
+	}
+
+	@media all and (min-width: $min_pc) {
+		max-width: $min_pc;
+	}
+
+	@media all and (min-width: $mac) {
+		max-width: $mac;
+		padding: 58px 40px 0;
+	}
+
+	@media all and (min-width: $desktop) {
+		max-width: $desktop;
+		padding: 58px 40px 0;
+	}
+
+	@media all and (min-width: $big) {
+		max-width: $big;
+		padding: 58px 40px 0;
+	}
+}
+
+.context_wrapper {
+	@media all and (min-width: $tablet) {
+		display: flex;
+		flex-direction: row-reverse;
+		width: 100%;
+	}
+
+	@media all and (min-width: $min_pc) {
+		align-items: stretch;
+	}
+}
+
+
+.text_wrapper {
+	@media all and (min-width: $tablet) {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		height: 100%;
+
+	}
+
+	@media all and (min-width: $min_pc) {
+		height: auto;
+	}
+}
+
+
+.title {
+	@include fontRegular(32px, 700, 32px, $black, right);
+	margin-bottom: 40px;
+
+	@media all and (min-width: $min_pc) {
+		font-size: 64px;
+		margin-bottom: 52px;
+	}
+}
+
+.correct_place {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 8px;
+	@include fontRegular(16px, 600, 19.2px, $red, right);
+	position: relative;
+	margin-bottom: 24px;
+	width: 100%;
+
+	&::before {
+		content: "";
+		width: 32px;
+		height: 2px;
+		background: currentColor;
+	}
+
+	@media all and (min-width: $min_pc) {
+		font-size: 24px;
+		margin-bottom: 40px;
+
+		&::before {
+			width: 88px;
+			height: 3px;
+		}
+	}
+}
+
+.text {
+	@include fontRegular(14px, 400, 18.2px, $text-color, right);
+	margin-bottom: 24px;
+	text-wrap: balance;
+
+	@media all and (min-width: $min_pc) {
+		font-size: 24px;
+	}
+}
+
+
+.logo_wrapper {
+	position: relative;
+	padding-top: 30px;
+
+	@media all and (min-width: $tablet) {
+		width: 50%;
+		flex-shrink: 0;
+	}
+
+	@media all and (min-width: $min_pc) {
+		width: 630px;
+	}
+}
+
+.img {
+	position: relative;
+	z-index: 2;
+	width: 302px;
+	filter: drop-shadow(0 9px 14px rgba(0, 0, 0, 0.14));
+
+	@media all and (min-width: $min_pc) {
+		width: 627px;
+	}
+}
+
+.logo_text {
+	position: absolute;
+	top: -3%;
+	left: 10%;
+	display: flex;
+	flex-direction: column;
+
+	@include fontRegular(124px, 700, 110px, transparent, right);
+	-webkit-text-stroke: 1px $dark-gray;
+	text-stroke: 1px $dark-gray;
+	rotate: -9deg;
+
+	@media all and (min-width: $min_pc) {
+		rotate: -9deg;
+		font-size: 250px;
+		line-height: 82%;
+		top: -2%;
+		left: 0;
+	}
+}
+
+.couch {
+	position: absolute;
+	top: 28%;
+	right: 20%;
+	@include fontRegular(10px, 700, 10px, $black);
+	rotate: -1deg;
+
+	@media all and (min-width: $min_pc) {
+		rotate: -9deg;
+		font-size: 24px;
+		font-weight: 600;
+		top: 25%;
+		right: 10%;
+	}
+}
+
+.fact_wrapper {
+	position: absolute;
+	z-index: 4;
+}
+
+
+
+.fact {
+	display: flex;
+	flex-direction: column;
+	max-width: 73px;
+	@include fontRegular(22px, 600, 26.4px, $black);
+
+	&>span {
+		@include fontRegular(10px, 400, 10px, $text-color)
+	}
+
+	@media all and (min-width: $min_pc) {
+		max-width: 156px;
+	}
+}
+
+.students {
+	top: 25%;
+	left: 7%;
+	rotate: -15deg;
+
+	@media all and (min-width: $min_pc) {
+		rotate: -6deg;
+		top: 50%;
+		left: 40%;
+
+		&>p {
+			font-size: 68px;
+			font-weight: 700;
+
+			&>span {
+				font-size: 14px;
+			}
+		}
+	}
+
+	@media all and (min-width: $min_pc) {
+		top: 60%;
+		left: 30%;
+	}
+}
+
+.subs {
+	top: 19%;
+	right: 5%;
+	rotate: 18deg;
+
+	&>p {
+		color: $red
+	}
+
+	@media all and (min-width: $min_pc) {
+		top: 5%;
+		right: 80%;
+		rotate: 6deg;
+
+		&>p {
+			font-size: 100px;
+			font-weight: 700;
+
+			&>span {
+				font-size: 14px;
+			}
+		}
+	}
+
+	@media all and (min-width: $min_pc) {
+		right: 85%;
+		top: 40%;
+	}
+}
+
+.consulting {
+	rotate: 9deg;
+	bottom: 14%;
+	left: 1%;
+
+	@media all and (min-width: $min_pc) {
+		rotate: -5deg;
+	}
+}
+
+.consulting_pc {
+	@media all and (min-width: $min_pc) {
+		font-size: 52px;
+		font-weight: 700;
+
+		&>span {
+			font-size: 14px;
+		}
+	}
+}
+
+.money {
+	rotate: -31deg;
+	bottom: 10%;
+	right: 1%;
+
+	@media all and (min-width: $min_pc) {
+		rotate: 3deg;
+		bottom: 60%;
+		right: 5%;
+
+		&>p {
+			font-size: 58px;
+			font-weight: 400;
+
+			&>span {
+				font-size: 14px;
+			}
+		}
+	}
+
+	@media all and (min-width: $min_pc) {
+		bottom: 50%;
+		right: 35%;
+	}
+}
+
+.hidden {
+	@media all and (min-width: $min_pc) {
+		display: none;
+	}
+}
+
+.facts_pc {
+	position: relative;
+	display: none;
+
+	@media all and (min-width: $min_pc) {
+		display: block;
+		flex-grow: 1;
+		width: 100%;
+	}
+}

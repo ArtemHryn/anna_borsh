@@ -1,0 +1,59 @@
+.section {
+	background: url('/assets/images/programs_bg_mob.webp') center/ cover no-repeat;
+
+	@media all and (min-width: $tablet) {
+		background-image: url('/assets/images/programs_bg_pc.webp');
+	}
+
+	@media all and (min-width: $big) {
+		background-image: url('/assets/images/programs_bg_big.webp');
+	}
+}
+
+.text_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	@media all and (min-width: $tablet) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+
+
+.about {
+	display: flex;
+	flex-direction: column-reverse;
+	@include fontRegular(16px, 400, 20px);
+	gap: 8px;
+
+
+	&::before {
+		content: '';
+		width: 32px;
+		height: 2px;
+		background-color: $red;
+	}
+
+	@media all and (min-width: $tablet) {
+		max-width: 411px;
+		flex-direction: row;
+		align-items: center;
+		gap: 16px;
+
+		&::before {
+			width: clamp(62px, 5vw, 92px);
+			height: 4px;
+			border-radius: 1px;
+			flex-shrink: 0;
+		}
+	}
+
+	@media all and (min-width: $min_pc) {
+		max-width: 620px;
+		font-size: 24px;
+	}
+}
