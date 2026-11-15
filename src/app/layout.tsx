@@ -1,5 +1,7 @@
+import Providers from "./providers";
 import { Inter, Arimo, Roboto } from "next/font/google";
 import type { Metadata } from "next";
+import { Toaster } from "sonner";
 import "./global.scss";
 
 export const metadata: Metadata = {
@@ -29,8 +31,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="uk"
       className={`${inter.variable} ${arimo.variable} ${roboto.variable}`}
+      data-scroll-behavior="smooth"
     >
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Providers>
+          {children}
+          <Toaster position="top-right" richColors expand />
+        </Providers>
+      </body>
     </html>
   );
 }

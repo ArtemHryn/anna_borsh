@@ -84,7 +84,7 @@ const Navigation = ({ isOpen, onClose }: MenuNavigationProps) => {
             </li>
           ))}
         </ul>
-        <a className={styles.cabinet}>
+        <a className={styles.cabinet} href="/login">
           Особистий кабінет{" "}
           <svg
             viewBox="0 0 23 17"

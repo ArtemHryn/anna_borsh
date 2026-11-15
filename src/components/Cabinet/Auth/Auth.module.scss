@@ -1,0 +1,50 @@
+.auth_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+
+	@media all and (min-width: $min_pc) {
+		width: 70%;
+		gap: 72px;
+		padding: 40px 60px;
+	}
+}
+
+.title {
+	display: flex;
+	flex-direction: column;
+	@include fontRegular(32px, 700, 32px, $black);
+	text-transform: uppercase;
+
+	&::after {
+		content: '';
+		width: 40px;
+		height: 4px;
+		background-color: $red;
+	}
+
+	@media all and (min-width: $min_pc) {
+		font-weight: 700;
+	}
+}
+
+.route_wrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	align-items: center;
+
+	@media all and (min-width: $min_pc) {
+		display: none;
+	}
+}
+
+.route_text {
+	@include fontRegular(14px, 400, 18.2px, $text-color);
+}
+
+.route_link {
+	@include fontRegular(16px, 600, 19.2px, $red);
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+}

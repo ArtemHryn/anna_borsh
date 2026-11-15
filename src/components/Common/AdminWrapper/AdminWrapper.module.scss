@@ -1,0 +1,12 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  padding: 48px;
+}
+
+.main {
+  min-width: 0;
+  height: calc(100vh - 145px - (48px * 2) - 24px);
+}

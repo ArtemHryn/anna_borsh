@@ -1,0 +1,12 @@
+.aside {
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	justify-content: space-between;
+	max-width: 450px;
+	background-color: $black;
+	height: 100vh;
+	width: 22vw;
+	gap: 40px;
+	flex-shrink: 0;
+}

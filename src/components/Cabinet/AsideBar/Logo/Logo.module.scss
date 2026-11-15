@@ -1,0 +1,50 @@
+.wrapper {
+	display: flex;
+	gap: 16px;
+	padding-bottom: 16px;
+	border-bottom: 0.5px solid $white;
+	align-items: center;
+}
+
+.out_circle {
+	position: relative;
+	border: 0.5px solid $white;
+	border-radius: 50%;
+	width: 78px;
+	height: 78px;
+	flex: 0 0 78px;
+	@include centerButton();
+}
+
+.textRing {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	fill: $white;
+	font-family: var(--arimo);
+	font-size: 10px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	text-transform: uppercase;
+}
+
+.link {
+	position: relative;
+	z-index: 1;
+	border: 0.50px solid $white;
+	border-radius: 50%;
+	width: 48px;
+	height: 48px;
+	@include centerButton();
+
+	&>svg {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+.role {
+	@include fontRegular(18px, 700, 22px);
+}

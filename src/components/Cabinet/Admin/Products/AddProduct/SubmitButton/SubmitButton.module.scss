@@ -1,0 +1,67 @@
+.wrapper {
+	display: flex;
+	justify-content: flex-end;
+	gap: 16px;
+}
+
+.submit {
+	@include centerButton();
+	width: 170px;
+	height: 44px;
+	@include fontRegular(16px, 500, 16px, $white);
+	background-color: $red;
+	transition:
+		transform 180ms ease,
+		box-shadow 180ms ease,
+		filter 180ms ease;
+
+	&:hover {
+		transform: translateY(-2px);
+		filter: brightness(1.08);
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.14);
+	}
+
+	&:active {
+		transform: translateY(0) scale(0.98);
+		box-shadow: none;
+	}
+}
+
+.back {
+	@include centerButton();
+	width: 221px;
+	height: 44px;
+	@include fontRegular(16px, 500, 16px, $red);
+	border: 1px solid $red;
+	transition:
+		transform 180ms ease,
+		color 180ms ease,
+		background-color 180ms ease,
+		box-shadow 180ms ease;
+
+	&:hover {
+		transform: translateY(-2px);
+		color: $white;
+		background-color: $red;
+		box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+	}
+
+	&:active {
+		transform: translateY(0) scale(0.98);
+		box-shadow: none;
+	}
+}
+
+.submit:focus-visible,
+.back:focus-visible {
+	outline: 3px solid rgba($red, 0.3);
+	outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	.submit,
+	.back {
+		transition: none;
+	}
+}

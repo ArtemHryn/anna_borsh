@@ -1,0 +1,16 @@
+.form {
+	display: flex;
+	gap: 24px;
+	min-width: 0;
+	height: calc(100vh - 145px - 48px - 24px);
+	padding-bottom: 48px;
+}
+
+.info_wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	background-color: $table-row-color;
+	padding: 24px;
+}

@@ -1,0 +1,15 @@
+.form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: $table-row-color;
+	height: 100%;
+	padding: 24px;
+}
+
+.label_wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 24px;
+}

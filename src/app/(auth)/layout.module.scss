@@ -1,0 +1,42 @@
+.main {
+	padding-block: 80px;
+
+	@media all and (min-width: $min_pc) {
+		padding: 0;
+	}
+}
+
+.container {
+	margin-inline: auto;
+	max-width: 100vw;
+	padding-inline: 24px;
+	max-width: $min_mobile;
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+
+	@media all and (min-width: $tablet) {
+		max-width: $tablet;
+		width: 100%;
+	}
+
+	@media all and (min-width: $min_pc) {
+		max-width: $min_pc;
+		padding: 40px 40px;
+		flex-direction: row;
+		min-height: 100vh;
+	}
+
+	@media all and (min-width: $mac) {
+		max-width: $mac;
+	}
+
+	@media all and (min-width: $desktop) {
+		max-width: $desktop;
+	}
+
+	@media all and (min-width: $big) {
+		max-width: $big;
+
+	}
+}

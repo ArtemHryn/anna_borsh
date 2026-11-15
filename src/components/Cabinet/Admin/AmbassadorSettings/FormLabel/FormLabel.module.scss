@@ -1,0 +1,21 @@
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: calc((100% - 24px) / 2);
+	@include fontRegular(10px, 400, 10px, $text-color);
+	height: 60px;
+}
+
+.input {
+	padding: 0 16px;
+	height: 48px;
+	width: 100%;
+	border: 1px solid $border-color;
+	background-color: $white;
+	@include fontRegular(16px, 400, calc(16px * 1.25), $black);
+
+	&::placeholder {
+		@include fontRegular(16px, 400, calc(16px * 1.25), $text-color);
+	}
+}
