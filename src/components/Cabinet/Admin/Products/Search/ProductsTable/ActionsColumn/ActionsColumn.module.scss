@@ -1,0 +1,28 @@
+.row_actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.icon_button {
+	display: inline-flex;
+	width: 36px;
+	height: 36px;
+	padding: 1px;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	transition: scale 250ms ease;
+
+	svg {
+		width: 24px;
+		height: 24px;
+
+	}
+
+	&:hover {
+		scale: 1.05;
+	}
+}

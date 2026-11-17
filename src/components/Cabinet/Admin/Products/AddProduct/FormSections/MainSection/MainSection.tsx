@@ -14,19 +14,23 @@ import {
   List,
   Underline,
 } from "@primeicons/react";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useFormState } from "react-hook-form";
 import { Suspense } from "react";
 import type { ReactNode } from "react";
-import type { AddProductFormData } from "../../types";
+import type {
+  AddProductFormData,
+  ProductDescriptionField,
+  ProductNameField,
+} from "../../types";
 import VideoIcon, { videoIconPath } from "./Icons/VideoIcon";
 import FileIcon, { fileIconPath } from "./Icons/File";
 
 import styles from "./MainSection.module.scss";
 
 export interface MainSectionProps {
-  name: "name" | "cardName";
+  name: ProductNameField;
   labelName: string;
-  description: "description" | "cardDescription";
+  description: ProductDescriptionField;
   labelDescription: string;
   nameRules?: FieldRules;
   descriptionRules?: FieldRules;
@@ -116,8 +120,12 @@ const MainSection = ({
   nameRules,
   descriptionRules,
 }: MainSectionProps) => {
-  const { control, register, formState: { errors } } =
-    useFormContext<AddProductFormData>();
+  const { control, register } = useFormContext<AddProductFormData>();
+  const { errors } = useFormState<AddProductFormData>({
+    control,
+    name,
+    exact: true,
+  });
   const nameError = errors[name]?.message;
 
   return (

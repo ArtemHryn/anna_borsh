@@ -1,5 +1,5 @@
 import AdminWrapper from "@/components/Common/AdminWrapper/AdminWrapper";
-import { ReactNode } from "react";
+import { ReactNode, Suspense } from "react";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
@@ -7,7 +7,7 @@ const layout = ({ children }: { children: ReactNode }) => {
       title={"Продукти"}
       description="Програми, практикуми та лекційні матеріали"
     >
-      {children}
+      <Suspense fallback={<div>Завантаження...</div>}>{children}</Suspense>
     </AdminWrapper>
   );
 };

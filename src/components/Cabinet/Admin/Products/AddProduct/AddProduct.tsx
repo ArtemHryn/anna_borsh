@@ -1,97 +1,123 @@
 "use client";
 
 import { createElement, useState } from "react";
-import type { ComponentType } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import SectionsList from "./SectionsList/SectionsList";
-import MainSection from "./FormSections/MainSection/MainSection";
 import SubmitButton from "./SubmitButton/SubmitButton";
-import Cover from "./FormSections/Cover/Cover";
-import Dates from "./FormSections/Dates/Dates";
-import Prices from "./FormSections/Prices/Prices";
-import Block from "./FormSections/Block/Block";
-import type { AddProductFormData } from "./types";
-import type { MainSectionProps } from "./FormSections/MainSection/MainSection";
+import type { AddProductFormData, BlockIndex } from "./types";
 import { fields, ProductListType } from "@/helpers/cabinet/admin/productList";
+import { addProductSections } from "@/helpers/cabinet/admin/addProductSections";
+import { getFinalProductData } from "@/helpers/cabinet/admin/finalProductsData";
+import { validateRequiredFields } from "@/helpers/cabinet/admin/validateRequiredFields";
+import useMutateAdminProduct from "@/hooks/useMutateAdminProduct";
 import styles from "./AddProduct.module.scss";
+import { useSession } from "next-auth/react";
 
-type RepeatedBlockType = Extract<ProductListType, `block${number}`>;
-type SectionConfig = { component: ComponentType<never>; props: never };
+interface AddProductProps {
+  editProduct?: EditProduct;
+}
 
-const defineSection = <Props,>(
-  component: ComponentType<Props>,
-  props: Props,
-): SectionConfig => ({
-  component: component as unknown as ComponentType<never>,
-  props: props as never,
-});
+interface EditProduct {
+  _id: string;
+  name: string;
+  description: string;
+  cardName: string;
+  cardDescription: string;
+  cover: AddProductFormData["cover"];
+  dateStart: string | Date;
+  dateEnd: string | Date;
+  price: string | number;
+  discount?: string | number | null;
+  [key: string]: unknown;
+}
 
-const blockSectionConfig = Object.fromEntries(
-  Array.from({ length: 10 }, (_, index) => {
-    const blockNumber = index + 1;
-    const blockType = `block${blockNumber}` as RepeatedBlockType;
+const getDefaultValues = (
+  product?: EditProduct,
+): AddProductFormData | undefined => {
+  if (!product) return undefined;
 
-    return [blockType, defineSection(Block, { blockNumber })];
-  }),
-) as Record<RepeatedBlockType, SectionConfig>;
+  const defaults: AddProductFormData = {
+    name: product.name,
+    description: product.description,
+    cardName: product.cardName,
+    cardDescription: product.cardDescription,
+    cover: product.cover,
+    dateRange: [new Date(product.dateStart), new Date(product.dateEnd)],
+    price: String(product.price),
+    discount: product.discount == null ? "" : String(product.discount),
+  };
 
-const sections = {
-  productInfo: defineSection(MainSection, {
-    name: "name",
-    labelName: "Повна назва продукту (максимум 100 символів)",
-    description: "description",
-    labelDescription: "Опис продукту (максимум 2500 символів)",
-    nameRules: {
-      required: "Введіть повну назву продукту",
-      maxLength: { value: 100, message: "Максимум 100 символів" },
-    },
-    descriptionRules: {
-      required: "Додайте опис продукту",
-      maxLength: { value: 2500, message: "Максимум 2500 символів" },
-    },
-  } satisfies MainSectionProps),
-  cardInfo: defineSection(MainSection, {
-    name: "cardName",
-    labelName: "Назва для картки (максимум 60 символів)",
-    description: "cardDescription",
-    labelDescription: "Опис продукту для картки (максимум 150 символів)",
-    nameRules: {
-      required: "Введіть назву для картки",
-      maxLength: { value: 60, message: "Максимум 60 символів" },
-    },
-    descriptionRules: {
-      required: "Додайте опис для картки",
-      maxLength: { value: 150, message: "Максимум 150 символів" },
-    },
-  } satisfies MainSectionProps),
-  cover: defineSection(Cover, {}),
-  dates: defineSection(Dates, {}),
-  pricing: defineSection(Prices, {}),
-  ...blockSectionConfig,
-} satisfies Record<ProductListType, SectionConfig>;
+  for (const index of Array.from(
+    { length: 10 },
+    (_, i) => (i + 1) as BlockIndex,
+  )) {
+    const block = product[`block${index}`];
+    if (!block || typeof block !== "object") continue;
 
-const AddProduct = () => {
+    const { blockName, blockDescription } = block as {
+      blockName?: unknown;
+      blockDescription?: unknown;
+    };
+    defaults[`blockName${index}`] =
+      typeof blockName === "string" ? blockName : "";
+    defaults[`blockDescription${index}`] =
+      typeof blockDescription === "string" ? blockDescription : "";
+  }
+
+  return defaults;
+};
+
+const AddProduct = ({ editProduct }: AddProductProps) => {
+  const { data } = useSession();
   const [block, setBlock] = useState<ProductListType>(fields[0].type);
-  const methods = useForm<AddProductFormData>();
+  const methods = useForm<AddProductFormData>({
+    mode: "onChange",
+    defaultValues: getDefaultValues(editProduct),
+  });
 
-  const { handleSubmit } = methods;
-  const ActiveSection = sections[block].component;
-  const sectionProps = sections[block].props;
+  const { getValues, handleSubmit, setError } = methods;
+  const ActiveSection = addProductSections[block].component;
+  const sectionProps = addProductSections[block].props;
+
+  const reportRequiredFieldErrors = (data: AddProductFormData) => {
+    const errors = validateRequiredFields(data);
+    if (errors.length === 0) return false;
+
+    toast.error("Заповніть всі поля");
+    errors.forEach(({ field, message }) => {
+      setError(field, { type: "required", message });
+    });
+    setBlock(errors[0].section);
+    return true;
+  };
+
+  const mutateProduct = useMutateAdminProduct(
+    data?.accessToken || "",
+    !!editProduct ? "edit" : "add",
+    !!editProduct ? editProduct._id : "",
+  );
 
   const handleFormSubmit = (data: AddProductFormData) => {
-    console.log(data);
+    if (reportRequiredFieldErrors(data)) return;
+    mutateProduct.mutate(getFinalProductData(data));
   };
+
+  const handleFormInvalid = () => {
+    reportRequiredFieldErrors(getValues());
+  };
+
   return (
     <FormProvider {...methods}>
       {" "}
       <form
         className={styles.form}
-        onSubmit={handleSubmit(handleFormSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit, handleFormInvalid)}
         autoComplete="off"
       >
         <SectionsList setBlock={setBlock} block={block} />
-        <div className={styles.info_wrapper}>
+        <div key={block} className={styles.info_wrapper}>
           {createElement(ActiveSection, sectionProps as never)}
           <SubmitButton />
         </div>

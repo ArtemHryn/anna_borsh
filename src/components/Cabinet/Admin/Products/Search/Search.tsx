@@ -1,17 +1,63 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import debounce from "lodash.debounce";
 import SearchIcon from "./Icons/SearchIcon";
 import styles from "./Search.module.scss";
 
-const Search = () => {
+interface SearchProps {
+  query: string;
+  setQuery: Dispatch<SetStateAction<string>>;
+}
+
+const Search = ({ query, setQuery }: SearchProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [inputValue, setInputValue] = useState(query);
   const inputRef = useRef<HTMLInputElement>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const debouncedSetSearch = useMemo(
+    () =>
+      debounce((value: string) => {
+        const params = new URLSearchParams(searchParams.toString());
+
+        setQuery(value);
+
+        if (value) {
+          params.set("search", value);
+        } else {
+          params.delete("search");
+        }
+
+        const query = params.toString();
+        router.replace(query ? `?${query}` : "?");
+      }, 500),
+    [searchParams, router, setQuery],
+  );
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+    debouncedSetSearch(value);
+  };
 
   useEffect(() => {
     if (isOpen) inputRef.current?.focus();
   }, [isOpen]);
+  useEffect(() => {
+    return () => {
+      debouncedSetSearch.cancel();
+    };
+  }, [debouncedSetSearch]);
 
   return (
     <div className={`${styles.search} ${isOpen ? styles.open : ""}`}>
@@ -29,8 +75,8 @@ const Search = () => {
           ref={inputRef}
           className={styles.input}
           type="text"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
+          value={inputValue}
+          onChange={handleChange}
           placeholder="Пошук продуктів"
           aria-label="Пошук продуктів"
           tabIndex={isOpen ? 0 : -1}

@@ -2,6 +2,7 @@ import Logo from "./Logo/Logo";
 import styles from "./AsideBar.module.scss";
 import Navigation from "./Navigation/Navigation";
 import LogOut from "./LogOut/LogOut";
+import { Suspense } from "react";
 
 interface AsideBar {
   type: "admin" | "user";
@@ -12,7 +13,9 @@ const AsideBar = ({ type, asideNavList = [] }: AsideBar) => {
   return (
     <aside className={styles.aside}>
       <Logo type={type} />
-      <Navigation navList={asideNavList} />
+      <Suspense fallback={<div></div>}>
+        <Navigation navList={asideNavList} />
+      </Suspense>
       <LogOut />
     </aside>
   );

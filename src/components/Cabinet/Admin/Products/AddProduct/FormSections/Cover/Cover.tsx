@@ -24,7 +24,7 @@ const ACCEPTED_FILE_EXTENSIONS = /\.(jpe?g|png|webp|avif|tiff?)$/i;
 
 const Cover = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const { setValue, watch } = useFormContext<AddProductFormData>();
+  const { setValue, watch, clearErrors } = useFormContext<AddProductFormData>();
   const uploadedCover = watch("cover");
   const hasUploadedCover =
     uploadedCover !== undefined &&
@@ -47,6 +47,7 @@ const Cover = () => {
         shouldValidate: true,
       });
       setPreviewUrl(cover.url);
+      clearErrors("cover");
       toast.success("Обкладинку успішно завантажено.");
     },
     onError: (mutationError: Error) => toast.error(mutationError.message),
